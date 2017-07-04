@@ -1,0 +1,32 @@
+
+1) GET /myWebApp/users              get all users
+        200 OK Return list of user
+        404 NOT FOUND Users collection is empty
+
+2) GET /myWebApp/users/{user_id}    get user
+          200 OK Return user
+          400 BAD_REQUEST User doesn't exist
+
+3) POST /myWebApp/users             create user
+          400 BAD_REQUEST  Category doesn't exist
+          201 CREATED User created
+
+	data example:
+    {
+        "username": "AAPL",
+        "email": "test@ro.ru",
+        "password": "435789",
+        "categoryId":1
+    }
+4) PUT /myWebApp/users              update user
+            200 OK Update user
+            304 NOT_MODIFIED
+
+	data example:
+		{
+            "username": "AAPL2245",
+            "email": "test@ro.ru2224554",
+            "password": "435789222ry",
+            "id":3,
+            "categoryId":4
+        }

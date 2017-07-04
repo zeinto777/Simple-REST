@@ -1,0 +1,33 @@
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb`;
+
+
+CREATE TABLE IF NOT EXISTS `user` (
+`user_id` INT NOT NULL AUTO_INCREMENT,
+`username` VARCHAR (16) NOT NULL,
+`email` VARCHAR (255) NULL,
+`password` VARCHAR (32) NOT NULL,
+`create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`user_id`));
+
+
+CREATE TABLE IF NOT EXISTS `mydb`.`category` (
+`category_id` INT NOT NULL AUTO_INCREMENT,
+`name` VARCHAR (255) NOT NULL,
+PRIMARY KEY (`category_id`));
+
+
+CREATE TABLE IF NOT EXISTS `mydb`.`user_to_category` (
+	`user_id` INT(11) NOT NULL,
+	PRIMARY KEY (`user_id`),
+	`category_id` INT(11) NOT NULL,
+	CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+ENGINE=InnoDB
+;
+
+INSERT INTO `mydb`.`category` (name) VALUES ("Developer");
+INSERT INTO `mydb`.`category` (name) VALUES ("Manager");
+INSERT INTO `mydb`.`category` (name) VALUES ("Tester");
+INSERT INTO `mydb`.`category` (name) VALUES ("Owner");
